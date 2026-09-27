@@ -7,6 +7,7 @@ const projects = [
   {
     id: "vcruitai", number: "01", name: "VcruitAI", title: "From resumes to a recruiter’s shortlist.", category: "AI RECRUITMENT PLATFORM", color: "recruit",
     summary: "An AI-assisted recruitment platform combining resume parsing, job management, candidate scoring, and hiring pipeline tracking.",
+    liveUrl: "https://vcruitai.com/",
     stack: ["Next.js", "FastAPI", "PostgreSQL", "GenAI"],
     problem: "Manual resume review involves unstructured information, repeated comparisons against job requirements, and candidate communication spread across different steps.",
     product: "VcruitAI brings those steps into a connected recruitment platform, helping recruiters move from uploaded resumes to a manageable candidate pipeline.",
@@ -18,6 +19,7 @@ const projects = [
   {
     id: "rdvp", number: "02", name: "RDVP", title: "Vehicle records and service workflows in one place.", category: "RIDEX DIGITAL VEHICLE PASSPORT", color: "vehicle",
     summary: "A platform for managing digital vehicle identities and service workflows across multiple stakeholder roles.",
+    liveUrl: "https://rdvp.in/",
     stack: ["Next.js", "FastAPI", "MongoDB"],
     problem: "Vehicle identity, service records, and communication need to stay connected across multiple stakeholder roles, while personal contact details need careful handling.",
     product: "Ridex Digital Vehicle Passport brings vehicle identity and service workflows into one platform, with responsive interfaces for different stakeholders.",
@@ -45,7 +47,20 @@ function ArchitectureDiagram({ project }: { project: (typeof projects)[number] }
 
 export default function Projects() {
   return <div className="shell"><section className="page-intro"><p className="eyebrow">PROJECTS / SELECTED WORK</p><h1>From a real problem.<br/><span className="orange">To working software.</span></h1><p className="page-lede">A closer look at the products I’ve contributed to, the systems behind them, and my part in bringing them together.</p><nav className="project-jump-links" aria-label="Project case studies">{projects.map(project=><a href={`#${project.id}`} key={project.id}><span className="mono">{project.number}</span>{project.name}<span aria-hidden="true">↓</span></a>)}</nav></section>
-    {projects.map(project=><article className="case-study reveal" key={project.id} id={project.id}><div className="case-heading"><div><p className="eyebrow">{project.number} / {project.category}</p><h2>{project.name}<span className="orange">.</span></h2></div><div className="tags">{project.stack.map(skill=><span key={skill}>{skill}</span>)}</div></div><div className="case-overview"><div className="case-intro"><h3>{project.title}</h3><p>{project.summary}</p><div className="case-role mono"><span>MY ROLE</span><span>FULL-STACK DEVELOPMENT</span></div></div><ArchitectureDiagram project={project}/></div><div className="case-details"><section><h4><span className="mono orange">01</span> The problem</h4><p>{project.problem}</p></section><section><h4><span className="mono orange">02</span> The product</h4><p>{project.product}</p></section><section><h4><span className="mono orange">03</span> My contribution</h4><ul className="contribution-list">{project.contributions.map(item=><li key={item}>{item}</li>)}</ul></section></div><section className="workflow-section"><h4 className="mono">KEY WORKFLOW</h4><ol className="workflow">{project.workflow.map((step,i)=><li key={step}><span className="mono">0{i+1}</span><strong>{step}</strong>{i<project.workflow.length-1 && <span className="workflow-arrow" aria-hidden="true">→</span>}</li>)}</ol></section><div className="case-outcome"><p className="eyebrow">DELIVERED & LEARNED</p><div><p>{project.outcome}</p></div></div></article>)}
+    {projects.map(project=><article className="case-study reveal" key={project.id} id={project.id}><div className="case-heading"><div><p className="eyebrow">{project.number} / {project.category}</p><h2>{project.name}<span className="orange">.</span></h2></div><div className="tags">{project.stack.map(skill=><span key={skill}>{skill}</span>)}</div></div><div className="case-overview"><div className="case-intro"><h3>{project.title}</h3><p>{project.summary}</p>
+      {project.liveUrl && (
+        <a
+          href={project.liveUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Visit Live Website for ${project.name} (opens in a new tab)`}
+          className="button button-primary mt-6 max-w-full text-center"
+        >
+          <span className="min-w-0 break-words">Visit Live Website</span>
+          <span className="shrink-0" aria-hidden="true">↗</span>
+        </a>
+      )}
+      <div className="case-role mono"><span>MY ROLE</span><span>FULL-STACK DEVELOPMENT</span></div></div><ArchitectureDiagram project={project}/></div><div className="case-details"><section><h4><span className="mono orange">01</span> The problem</h4><p>{project.problem}</p></section><section><h4><span className="mono orange">02</span> The product</h4><p>{project.product}</p></section><section><h4><span className="mono orange">03</span> My contribution</h4><ul className="contribution-list">{project.contributions.map(item=><li key={item}>{item}</li>)}</ul></section></div><section className="workflow-section"><h4 className="mono">KEY WORKFLOW</h4><ol className="workflow">{project.workflow.map((step,i)=><li key={step}><span className="mono">0{i+1}</span><strong>{step}</strong>{i<project.workflow.length-1 && <span className="workflow-arrow" aria-hidden="true">→</span>}</li>)}</ol></section><div className="case-outcome"><p className="eyebrow">DELIVERED & LEARNED</p><div><p>{project.outcome}</p></div></div></article>)}
     <section className="inline-cta"><div><p className="eyebrow">LET’S TALK THROUGH THE DETAILS</p><h2>Curious about the work?</h2><a href="https://github.com/PrasadPartham" target="_blank" rel="noopener noreferrer" className="text-link">Visit my GitHub profile ↗<span className="sr-only"> (opens in a new tab)</span></a></div><Link href="/contact" className="button button-primary">Start a Conversation <span aria-hidden="true">↗</span></Link></section>
   </div>;
 }
